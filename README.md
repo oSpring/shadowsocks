@@ -71,13 +71,30 @@ License
 
 Apache License
 
+Centos 7 StartUp
+
+cat >/etc/systemd/system/shadowsocks.service
+
+-----------------
+[Unit]
+Description=Shadowsocks
+
+[Service]
+TimeoutStartSec=0
+ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json
+
+[Install]
+WantedBy=multi-user.target
+-----------------
+
+systemctl enable shadowsocks
+systemctl start shadowsocks
+
+systemctl status shadowsocks -l
 
 
 
-
-
-
-[Build Status]:      https://img.shields.io/travis/shadowsocks/shadowsocks/master.svg?style=flat
+[Build Status]:      https://img.shields.io/travis/shadowsocks/shadowsocks/master.svg?style=flat
 [Coverage Status]:   https://jenkins.shadowvpn.org/result/shadowsocks
 [Coverage]:          https://jenkins.shadowvpn.org/job/Shadowsocks/ws/PYENV/py34/label/linux/htmlcov/index.html
 [PyPI]:              https://pypi.python.org/pypi/shadowsocks
